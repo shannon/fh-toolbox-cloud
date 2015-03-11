@@ -21,7 +21,7 @@ router.route('/db')
     $fh.db({
       act:    'create',
       type:   'entries',
-      fields: req.body
+      fields: req.body.fields
     }, function (err, data) {
       if(err) { 
         return next(err);
