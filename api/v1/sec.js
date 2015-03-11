@@ -12,5 +12,4 @@ router.route('/sec').post(function(req, res, next){
   });
 });
 
-
 exports.router = router;
