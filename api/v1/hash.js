@@ -10,6 +10,6 @@ router.route('/hash').post(function(req, res, next){
     
     res.json(result);
   });
-})
+});
 
 exports.router = router;
