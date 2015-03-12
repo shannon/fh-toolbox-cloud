@@ -15,10 +15,10 @@ var parser = bodyParser();
 router.use(function(req, res, next){
   var start = Date.now();
 
-  $fh.stats.inc('cloud-request-increment');
-  $fh.stats.inc('cloud-request-decrement');
-  res.on('end', function(){
-    $fh.stats.timing('cloud-request-timing', Date.now() - start);
+  $fh.stats.inc('increment');
+  $fh.stats.dec('decrement');
+  res.on('close', function(){
+    $fh.stats.timing('timing', Date.now() - start);
   });
 
   if(['POST', 'PUT'].indexOf(req.method) !== -1){
