@@ -17,7 +17,7 @@ router.use(function(req, res, next){
 
   $fh.stats.inc('increment');
   $fh.stats.dec('decrement');
-  res.on('close', function(){
+  res.on('header', function(){
     $fh.stats.timing('timing', Date.now() - start);
   });
 
