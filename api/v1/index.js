@@ -5,6 +5,7 @@ var router 	    = new require('express').Router()
   , Sec         = require('./sec')
   , Service     = require('./service')
   , Db          = require('./db')
+  , Cache       = require('./cache')
 ;
 
 
@@ -25,6 +26,7 @@ exports.route = function(app){
   app.use('/api/v1', Sec.router);
   app.use('/api/v1', Service.router);
   app.use('/api/v1', Db.router);
+  app.use('/api/v1', Cache.router);
   app.use(function(err, req, res, next){
     console.error(err.stack || err);
     res.status(500).send('ಠ_ಠ This is why we can\'t have nice things.');
