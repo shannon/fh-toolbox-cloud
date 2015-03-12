@@ -1,5 +1,6 @@
 var router 	    = new require('express').Router()
   , bodyParser  = require('body-parser')
+  , $fh         = require('fh-mbaas-api')
 	, Cloud 	    = require('./cloud')
   , Hash        = require('./hash')
   , Sec         = require('./sec')
@@ -12,7 +13,13 @@ var router 	    = new require('express').Router()
 var parser = bodyParser();
 
 router.use(function(req, res, next){
-  
+  var start = Date.now();
+
+  $fh.stats.inc('cloud request');
+  res.on('end', function(){
+    $fh.stats.timing('cloud request', Date.now() - start);
+  });
+
   if(['POST', 'PUT'].indexOf(req.method) !== -1){
     return parser(req, res, next);
   }
