@@ -16,8 +16,9 @@ router.use(function(req, res, next){
   var start = Date.now();
 
   $fh.stats.inc('inc');
-  $fh.stats.dec('dec');
-  res.on('header', function(){
+  $fh.stats.inc('inc');
+  $fh.stats.dec('inc'); //this is just to test stats framework
+  res.on('finish', function(){
     $fh.stats.timing('time', Date.now() - start);
   });
 
