@@ -57,8 +57,6 @@ module.exports = function(grunt) {
            */
           var serviceMap = {
             'JVYX4wZxnuLqvAX8G6Z5VnYL': 'http://127.0.0.1:8817'
-
-            
           };
           return JSON.stringify(serviceMap);
         }

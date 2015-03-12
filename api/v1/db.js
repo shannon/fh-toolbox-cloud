@@ -2,12 +2,12 @@ var router = new require('express').Router()
   , $fh    = require('fh-mbaas-api')
 ;
 
-router.route('/db')
+router.route('/db/:type')
 
   .get(function(req, res, next){
     $fh.db({
       act:    'list',
-      type:   'entries'
+      type:   req.params.type
     }, function (err, data) {
       if(err) { 
         return next(err);
@@ -20,7 +20,7 @@ router.route('/db')
   .post(function(req, res, next){
     $fh.db({
       act:    'create',
-      type:   'entries',
+      type:   req.params.type,
       fields: req.body.fields
     }, function (err, data) {
       if(err) { 
@@ -34,7 +34,7 @@ router.route('/db')
   .delete(function(req, res, next){
     $fh.db({
       act:    'deleteall',
-      type:   'entries'
+      type:   req.params.type
     }, function (err, data) {
       if(err) { 
         return next(err);
@@ -46,12 +46,12 @@ router.route('/db')
 
 ;
 
-router.route('/db/:guid')
+router.route('/db/:type/:guid')
 
   .get(function(req, res, next){
     $fh.db({
       act:    'read',
-      type:   'entries',
+      type:   req.params.type,
       guid:   req.params.guid
     }, function (err, data) {
       if(err) { 
@@ -65,7 +65,7 @@ router.route('/db/:guid')
   .post(function(req, res, next){
     $fh.db({
       act:    'update',
-      type:   'entries',
+      type:   req.params.type,
       guid:   req.params.guid,
       fields: req.body
     }, function (err, data) {
@@ -80,7 +80,7 @@ router.route('/db/:guid')
   .delete(function(req, res, next){
     $fh.db({
       act:    'delete',
-      type:   'entries',
+      type:   req.params.type,
       guid:   req.params.guid
     }, function (err, data) {
       if(err) { 

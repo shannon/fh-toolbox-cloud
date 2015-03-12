@@ -2,12 +2,12 @@ var router = new require('express').Router()
   , $fh    = require('fh-mbaas-api')
 ;
 
-router.route('/cache')
+router.route('/cache/:key')
 
   .get(function(req, res, next){
     $fh.cache({
       act:    'load',
-      key:    'test'
+      key:    req.params.key
     }, function (err, data) {
       if(err) { 
         return next(err);
@@ -22,7 +22,7 @@ router.route('/cache')
     
     $fh.cache({
       act:    'save',
-      key:    'test',
+      key:    req.params.key,
       value:  value,
       expire: 60
     }, function (err, data) {
@@ -37,13 +37,13 @@ router.route('/cache')
   .delete(function(req, res, next){
     $fh.cache({
       act:    'remove',
-      type:   'test'
+      type:   req.params.key
     }, function (err, data) {
       if(err) { 
         return next(err);
       }
 
-      res.send(data);
+      res.send({ message: 'cache cleared'});
     });
   })
 
