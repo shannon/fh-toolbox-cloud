@@ -15,11 +15,13 @@ var parser = bodyParser();
 
 router.use(function(req, res, next){
   var start = Date.now();
-
-  $fh.stats.inc('increment');
-  $fh.stats.dec('decrement');
-  res.on('header', function(){
-    $fh.stats.timing('timing', Date.now() - start);
+  
+  //this is just to test stats framework
+  $fh.stats.inc('inc');
+  $fh.stats.inc('inc');
+  $fh.stats.dec('inc');
+  res.on('finish', function(){
+    $fh.stats.timing('time', Date.now() - start);
   });
 
   if(['POST', 'PUT'].indexOf(req.method) !== -1){
