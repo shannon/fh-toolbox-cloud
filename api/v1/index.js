@@ -14,10 +14,11 @@ var parser = bodyParser();
 
 router.use(function(req, res, next){
   var start = Date.now();
-
+  
+  //this is just to test stats framework
   $fh.stats.inc('inc');
   $fh.stats.inc('inc');
-  $fh.stats.dec('inc'); //this is just to test stats framework
+  $fh.stats.dec('inc');
   res.on('finish', function(){
     $fh.stats.timing('time', Date.now() - start);
   });
