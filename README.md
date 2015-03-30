@@ -1,25 +1,25 @@
-# FeedHenry Hello World MBaaS Server
+# FeedHenry Toolbox MBaaS Server
 
-This is a blank 'hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs. 
+This is a toolbox cloud app that exercises all the main components of fh-mbaas-api 
 
-# Group Hello World API
+# Group Toolbox API
 
-# hello [/hello]
+# cloud [/cloud]
 
-'Hello world' endpoint.
+'$fh.cloud' endpoint.
 
-## hello [POST] 
+## cloud [POST] 
 
-'Hello world' endpoint.
+$fh.cloud' endpoint.
 
 + Request (application/json)
     + Body
             {
-              "hello": "world"
+              "name": "FeedHenry"
             }
 
 + Response 200 (application/json)
     + Body
             {
-              "msg": "Hello world"
+              "msg": "Hello from the cloud FeedHenry!"
             }
