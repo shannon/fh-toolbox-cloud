@@ -4,7 +4,7 @@ This is a toolbox cloud app that exercises all the main components of fh-mbaas-a
 
 # Group Toolbox API
 
-# cloud [/cloud]
+# cloud [/api/v1/cloud]
 
 '$fh.cloud' endpoint.
 
