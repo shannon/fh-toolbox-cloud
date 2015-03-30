@@ -6,11 +6,9 @@ This is a toolbox cloud app that exercises all the main components of fh-mbaas-a
 
 # cloud [/api/v1/cloud]
 
-'$fh.cloud' endpoint.
+Get Hello from the cloud.
 
 ## cloud [POST] 
-
-$fh.cloud' endpoint.
 
 + Request (application/json)
     + Body
@@ -29,8 +27,6 @@ $fh.cloud' endpoint.
 '$fh.service' endpoint.
 
 ## service [POST] 
-
-$fh.service' endpoint.
 
 + Request (application/json)
     + Body
@@ -54,8 +50,6 @@ $fh.service' endpoint.
 
 ## hash [POST] 
 
-$fh.hash' endpoint.
-
 + Request (application/json)
     + Body
             {
@@ -75,8 +69,6 @@ $fh.hash' endpoint.
 
 ## sec [POST] 
 
-$fh.sec' endpoint.
-
 + Request (application/json)
     + Body
             {
@@ -91,13 +83,11 @@ $fh.sec' endpoint.
               "secretkey": "b9195d145b99a4609c7f0fd77290dd75" 
             }
             
-# db [/api/v1/db/:type]
+# db/entries [/api/v1/db/entries]
 
-'$fh.db' endpoint.
+'$fh.db' endpoint. "entries" can be any collection name
 
-## db [GET] 
-
-$fh.db' endpoint.
+## db/entries [GET] 
 
 + Request
 
@@ -106,10 +96,83 @@ $fh.db' endpoint.
             {
               "count": 1,
               "list": [{
-                "type":"entries",
-                "guid":"55197e0e8fb7890e0e000003",
-                "fields":{"firstname":"Feed","lastname":"Henry","email":"fh@feedhenry.com"}
+                "type": "entries",
+                "guid": "55197e0e8fb7890e0e000003",
+                "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
               }]
+            }
+            
+## db/entries [POST] 
+
++ Request
+    + Body
+            {
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
+            }
+
++ Response 200 (application/json)
+    + Body
+            {
+              "type": "entries",
+              "guid": "55197e0e8fb7890e0e000003",
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
+            }
+            
+## db/entries [DELETE] 
+
++ Request
+
++ Response 200 (application/json)
+    + Body
+            {
+              "status": "ok",
+              "count": 1
+            }
+            
+# db/guid [/api/v1/db/entries/guid]
+
+'$fh.db' endpoint. "guid" should be replaced with actual guid.
+
+## db/guid [GET] 
+
++ Request
+
++ Response 200 (application/json)
+    + Body
+            {
+              "type": "entries",
+              "guid": "55197e0e8fb7890e0e000003",
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
+            }
+            
+## db/guid [POST] 
+
++ Request
+    + Body
+            {
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
+            }
+
++ Response 200 (application/json)
+    + Body
+            {
+              "type": "entries",
+              "guid": "55197e0e8fb7890e0e000003",
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
+            }
+            
+## db/guid [DELETE] 
+
+'$fh.db' endpoint.
+
++ Request
+
++ Response 200 (application/json)
+    + Body
+            {
+              "type": "entries",
+              "guid": "55197e0e8fb7890e0e000003",
+              "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
             }
             
 cache
