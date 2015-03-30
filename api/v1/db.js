@@ -67,12 +67,11 @@ router.route('/db/:type/:guid')
       act:    'update',
       type:   req.params.type,
       guid:   req.params.guid,
-      fields: req.body
+      fields: req.body.fields
     }, function (err, data) {
       if(err) { 
         return next(err);
       }
-
       res.send(data);
     });
   })
