@@ -83,13 +83,11 @@ Get Hello from the cloud.
               "secretkey": "b9195d145b99a4609c7f0fd77290dd75" 
             }
             
-# db/entries [/api/v1/db/entries]
+# db/:type [/api/v1/db/:type]
 
-'$fh.db' endpoint. "entries" can be any collection name
+'$fh.db' endpoint. "type" can be any collection name
 
-## db/entries [GET] 
-
-+ Request
+## db/:type [GET] 
 
 + Response 200 (application/json)
     + Body
@@ -102,7 +100,7 @@ Get Hello from the cloud.
               }]
             }
             
-## db/entries [POST] 
+## db/:type [POST] 
 
 + Request
     + Body
@@ -118,9 +116,7 @@ Get Hello from the cloud.
               "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
             }
             
-## db/entries [DELETE] 
-
-+ Request
+## db/:type [DELETE] 
 
 + Response 200 (application/json)
     + Body
@@ -129,13 +125,11 @@ Get Hello from the cloud.
               "count": 1
             }
             
-# db/guid [/api/v1/db/entries/guid]
+# db/:type/:guid [/api/v1/db/:type/:guid]
 
 '$fh.db' endpoint. "guid" should be replaced with actual guid.
 
-## db/guid [GET] 
-
-+ Request
+## db/:type/:guid [GET] 
 
 + Response 200 (application/json)
     + Body
@@ -145,7 +139,7 @@ Get Hello from the cloud.
               "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
             }
             
-## db/guid [POST] 
+## db/:type/:guid [POST] 
 
 + Request
     + Body
@@ -161,11 +155,7 @@ Get Hello from the cloud.
               "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
             }
             
-## db/guid [DELETE] 
-
-'$fh.db' endpoint.
-
-+ Request
+## db/:type/:guid [DELETE] 
 
 + Response 200 (application/json)
     + Body
@@ -175,5 +165,53 @@ Get Hello from the cloud.
               "fields": { "firstname": "Feed", "lastname": "Henry", "email": "fh@feedhenry.com" }
             }
             
-cache
-health
+# cache/:key [/api/v1/cache/:key]
+
+'$fh.cache' endpoint. "key" can be any key.
+
+## cache/:key [GET] 
+
++ Response 200 (application/json)
+    + Body
+            {
+              "value": "FeedHenry",
+              "expire": 1427735500789
+            }
+            
+## cache/:key [POST] 
+
++ Request
+    + Body
+            {
+              "value": "FeedHenry"
+            }
+
++ Response 200 (application/json)
+    + Body
+            {
+              "value": "FeedHenry",
+              "expire": 1427735500789
+            }
+            
+## cache/:key [DELETE] 
+
++ Response 200 (application/json)
+    + Body
+            { 
+              "message": "cache cleared"
+            }
+
+# health [/api/v1/health]
+
+health checkpoint
+
+## health [GET] 
+
++ Response 200 (application/json)
+    + Body
+            {
+              "status": "ok",
+              "summary": "No issues to report. All tests passed without error",
+              "details": "..."
+            }
+            
