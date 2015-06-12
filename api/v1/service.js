@@ -7,7 +7,8 @@ router.route('/service').post(function(req, res, next){
     guid :  req.body.guid,
     path:   req.body.path, 
     method: req.body.method,
-    params: req.body.params || {}
+    params: req.body.params || {},
+    headers: req.body.headers || {}
   }, function(err, body, response) {
     if ( err ) {
       return next(err);
